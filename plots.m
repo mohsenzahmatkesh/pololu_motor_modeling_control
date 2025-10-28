@@ -4,15 +4,15 @@ close all
 close all
 figure;
 set(gcf, 'Position', [100, 100, 900, 800]);
-tiledlayout(3, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
+tiledlayout(2, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 
 % ===== Voltage =====
-nexttile;
-plot(out.tout, out.voltage, 'Color', [0.2, 0.2, 0.6], 'LineWidth', 2.5);
-grid off;
-ylabel('Voltage (V)', 'Interpreter', 'latex', 'FontSize', 22);
-% title('\textbf{Motor Input Voltage}', 'Interpreter', 'latex', 'FontSize', 20);
-set(gca, 'TickLabelInterpreter', 'latex', 'FontSize', 22);
+% nexttile;
+% plot(out.tout, out.voltage, 'Color', [0.2, 0.2, 0.6], 'LineWidth', 2.5);
+% grid off;
+% ylabel('Voltage (V)', 'Interpreter', 'latex', 'FontSize', 22);
+% % title('\textbf{Motor Input Voltage}', 'Interpreter', 'latex', 'FontSize', 20);
+% set(gca, 'TickLabelInterpreter', 'latex', 'FontSize', 22);
 
 % ===== Current =====
 nexttile;
@@ -46,7 +46,41 @@ grid off;
 legend({'Desired Position', 'Actual Position'}, 'Interpreter', 'latex', ...
        'FontSize', 22, 'Location', 'northwest');
 xlabel('$t$ (s)', 'Interpreter', 'latex', 'FontSize', 22);
-ylabel('Ball Screw Position (mm)', 'Interpreter', 'latex', 'FontSize', 22);
+ylabel('Camera Position (mm)', 'Interpreter', 'latex', 'FontSize', 22);
+% title('\textbf{Position Tracking Response}', ...
+      % 'Interpreter', 'latex', 'FontSize', 20);
+set(gca, 'TickLabelInterpreter', 'latex', 'FontSize', 22);
+
+%% ===== Velocity Tracking =====
+figure;
+set(gcf, 'Position', [100, 100, 900, 800]);
+tiledlayout(1, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
+
+nexttile;
+plot(out.tout, out.velocity, 'b', 'LineWidth', 2.5);
+grid off;
+
+% legend({'Desired Position', 'Actual Position'}, 'Interpreter', 'latex', ...
+%        'FontSize', 22, 'Location', 'northwest');
+xlabel('$t$ (s)', 'Interpreter', 'latex', 'FontSize', 22);
+ylabel('Camera velocity (mm/sec)', 'Interpreter', 'latex', 'FontSize', 22);
+% title('\textbf{Position Tracking Response}', ...
+      % 'Interpreter', 'latex', 'FontSize', 20);
+set(gca, 'TickLabelInterpreter', 'latex', 'FontSize', 22);
+
+%% ===== Position Error =====
+figure;
+set(gcf, 'Position', [100, 100, 900, 800]);
+tiledlayout(1, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
+
+nexttile;
+plot(out.tout, out.pos_error, 'b', 'LineWidth', 2.5);
+grid off;
+
+% legend({'Desired Position', 'Actual Position'}, 'Interpreter', 'latex', ...
+%        'FontSize', 22, 'Location', 'northwest');
+xlabel('$t$ (s)', 'Interpreter', 'latex', 'FontSize', 22);
+ylabel('Camera Position Error (mm)', 'Interpreter', 'latex', 'FontSize', 22);
 % title('\textbf{Position Tracking Response}', ...
       % 'Interpreter', 'latex', 'FontSize', 20);
 set(gca, 'TickLabelInterpreter', 'latex', 'FontSize', 22);
@@ -59,7 +93,7 @@ tiledlayout(1, 1, 'Padding', 'compact', 'TileSpacing', 'compact');
 nexttile;
 plot(out.position, out.voltage, 'Color', [0.3, 0.4, 0.8], 'LineWidth', 2.5);
 grid off;
-xlabel('Ball Screw Position (mm)', 'Interpreter', 'latex', 'FontSize', 22);
+xlabel('Camera Position (mm)', 'Interpreter', 'latex', 'FontSize', 22);
 ylabel('Voltage (V)', 'Interpreter', 'latex', 'FontSize', 22);
 % title('\textbf{Position vs Voltage}', 'Interpreter', 'latex', 'FontSize', 20);
 set(gca, 'TickLabelInterpreter', 'latex', 'FontSize', 22);
